@@ -12,11 +12,16 @@ class Track extends React.Component {
   }
 
   render() {
+    const details = this.props.trackDetails ?? {};
+    const name = details.name ?? 'Track Name';
+    const artist = details.artist ?? 'Track Artist';
+    const album = details.album ?? 'Track Album';
+
     return (
       <div className="Track">
         <div className="Track-information">
-          <h3>{'Track Name'}</h3>
-          <p>{'Track Artist'} | {'Track Album'}</p>
+          <h3>{name}</h3>
+          <p>{artist} | {album}</p>
         </div>
         
       </div>
