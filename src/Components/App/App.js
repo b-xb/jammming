@@ -29,7 +29,7 @@ class App extends React.Component {
           album: "Album 3",
         },
       ],
-      playlistName: "",
+      playlistName: "New Playlist",
       playlistTracks: [
         {
           id: "p1",
