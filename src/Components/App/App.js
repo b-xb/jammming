@@ -15,29 +15,7 @@ class App extends React.Component {
       searchTerm: "",
       searchResults: [],
       playlistName: "New Playlist",
-      playlistTracks: [
-        {
-          id: "p1",
-          name: "Playlist Track 1",
-          artist: "Playlist Artist 1",
-          album: "Playlist Album 1",
-          uri: "http://playlistlink1",
-        },
-        {
-          id: "p2",
-          name: "Playlist Track 2",
-          artist: "Playlist Artist 2",
-          album: "Playlist Album 2",
-          uri: "http://playlistlink2",
-        },
-        {
-          id: "p3",
-          name: "Playlist Track 3",
-          artist: "Playlist Artist 3",
-          album: "Playlist Album 3",
-          uri: "http://playlistlink3",
-        },
-      ],
+      playlistTracks: [],
     };
     this.addTrack = this.addTrack.bind(this);
     this.removeTrack = this.removeTrack.bind(this);
@@ -77,32 +55,79 @@ class App extends React.Component {
     });
   }
 
-  savePlaylist() {
+  async savePlaylist() {
+    const playlistName = this.state.playlistName;
+    const playlistTracks = this.state.playlistTracks;
+
+    localStorage.setItem("callbackAction", JSON.stringify("savePlaylist"));
+    localStorage.setItem("playlistName", JSON.stringify(playlistName));
+    localStorage.setItem("playlistTracks", JSON.stringify(playlistTracks));
+
     const trackURIs = this.state.playlistTracks.map(
       track => track.uri
     );
-    // TODO: pass trackURIs to Spotify API
-    console.log(trackURIs);
+
+    const success = await Spotify.savePlaylist(playlistName,trackURIs);
+
+    if (success) {
+      localStorage.removeItem("callbackAction");
+      localStorage.removeItem("playlistName");
+      localStorage.removeItem("playlistTracks");
+      this.setState({
+        playlistName: "New Playlist",
+        playlistTracks: [],
+      });
+    }
+
   }
 
   async search(term) {
+    localStorage.setItem("callbackAction", JSON.stringify("search"));
     localStorage.setItem("searchTerm", JSON.stringify(term));
+
     const searchResults = await Spotify.search(term);
+
     if (searchResults) {
       this.setState({
         searchResults: searchResults
       });
       localStorage.removeItem("searchTerm");
+      localStorage.removeItem("callbackAction");
     }
   }
 
   componentDidMount(){
-    const searchTerm = JSON.parse(localStorage.getItem("searchTerm"));
-    if (searchTerm) {
-      this.setState({
-        searchTerm: searchTerm
-      });
-      this.search(searchTerm);
+
+    //check if in the middle of performing a form action when callback is returned
+    const callbackAction = JSON.parse(localStorage.getItem("callbackAction"));
+
+    //if in the middle of an action carry on
+    switch (callbackAction){
+
+      case 'search':
+        const searchTerm = JSON.parse(localStorage.getItem("searchTerm"));
+        if (searchTerm) {
+          this.setState({
+            searchTerm: searchTerm
+          });
+          this.search(searchTerm);
+        }
+        break;
+
+      case 'savePlaylist':
+        const playlistName = JSON.parse(localStorage.getItem("playlistName"));
+        const playlistTracks = JSON.parse(localStorage.getItem("playlistTracks"));
+        if (playlistName && playlistTracks) {
+          this.setState({
+            playlistName: playlistName,
+            playlistTracks: playlistTracks,
+          });
+          this.savePlaylist();
+        }
+        break;
+
+      default:
+        break;
     }
   }
 

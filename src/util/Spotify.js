@@ -62,7 +62,94 @@ const Spotify = {
     } else {
       return [];
     }
+  },
+
+  async savePlaylist(playlistName="",trackURIs=[]) {
+
+    if(playlistName && trackURIs.length>0) {
+
+      try {
+        let userId = "";
+        const token = Spotify.getAcessToken();
+        const authHeader = `Bearer ${token}`;
+
+        if (token) {
+
+          const userEndPoint = 'https://api.spotify.com/v1/me';
+          const userProfileResponse = await fetch(userEndPoint, {
+            headers: {
+              Authorization: authHeader,
+            }
+          });
+
+          if(userProfileResponse.ok){
+
+            const userInfo = await userProfileResponse.json();
+            console.log(userInfo);
+            userId = userInfo.id;
+
+            const newPlaylistEndPoint = `https://api.spotify.com/v1/users/${userId}/playlists`;
+
+            const newPlaylistResponse = await fetch(newPlaylistEndPoint, {
+              method: 'POST',
+              headers: {
+                Authorization: authHeader,
+                'Content-type': 'application/json',
+              },
+              body: JSON.stringify({
+                name: playlistName,
+                description: "",
+                public: false,
+              })
+            });
+
+            if(newPlaylistResponse.ok){
+
+              const newPlaylist = await newPlaylistResponse.json()
+              console.log(newPlaylist);
+              const playlistId = newPlaylist.id;
+
+              const fillPlaylistEndPoint = `https://api.spotify.com/v1/playlists/${playlistId}/tracks`;
+              const fillPlaylistResponse = await fetch(fillPlaylistEndPoint, {
+                method: 'POST',
+                headers: {
+                  Authorization: authHeader,
+                  'Content-type': 'application/json',
+                },
+                body: JSON.stringify({
+                  uris: trackURIs,
+                  position: 0,
+                })
+              });
+
+              if(fillPlaylistResponse.ok){
+                const filledPlaylist = await fillPlaylistResponse.json()
+                console.log(filledPlaylist);
+                const snapshotId = filledPlaylist.snapshot_id;
+                return {
+                  userId,
+                  playlistId,
+                  snapshotId
+                }
+              }
+            }
+
+          }
+        }
+
+      } catch(error){
+        console.log(error)
+      }
+
+    } else {
+      //TODO: add user feedback
+    }
+
+    return null;
   }
+
 };
+
+
 
 export default Spotify;
