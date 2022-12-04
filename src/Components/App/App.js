@@ -77,6 +77,9 @@ class App extends React.Component {
         playlistName: "New Playlist",
         playlistTracks: [],
       });
+
+      // temporary fix for updating playlist Name value property on reset
+      document.getElementsByClassName("Playlist")[0].children[0].value = "New Playlist";
     }
 
   }

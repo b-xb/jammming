@@ -2,6 +2,7 @@
 
 ## bugs
 - setting the value attribute alone does not update the value property for playlist name in the input field
+  - note: added a temporary fix for now, but the solution could be improved to be more inline with best practice
 - ensure all current data (search results, playlist name, playlist tracks) remain stored between redirects
 
 ## features
