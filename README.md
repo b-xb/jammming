@@ -1,3 +1,21 @@
+# TODO
+
+## bugs
+- setting the value attribute alone does not update the value property for playlist name in the input field
+- ensure all current data (search results, playlist name, playlist tracks) remain stored between redirects
+
+## features
+- add a clear button to playlist and search results
+- automatically keep all state information stored between sessions (i.e. as soon as a piece of data is altered)
+  - don't store user_token
+- Instead of redirecting users to spotify, provide a button for them to connect their accounts
+- user alterts
+  - provide feedback for when something goes wrong (connection issues, empty playlist, empty playlist name etc.)
+  - provide users with a link to their playlist after it has been created 
+
+## documentation
+- add more information to the README page
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
