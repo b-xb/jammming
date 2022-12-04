@@ -1,9 +1,14 @@
 # TODO
 
 ## bugs
+- add an alert to notify users of localStorage being used and to check for permission
 - setting the value attribute alone does not update the value property for playlist name in the input field
   - note: added a temporary fix for now, but the solution could be improved to be more inline with best practice
 - ensure all current data (search results, playlist name, playlist tracks) remain stored between redirects
+
+## refactoring
+- replace all instances of the string "New Playlist" with a variable that is set in App.js
+- refactor how the localStorage interaction is handled
 
 ## features
 - add a clear button to playlist and search results
