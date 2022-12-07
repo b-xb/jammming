@@ -1,5 +1,7 @@
 import React from 'react';
 
+import {IS_LOCAL} from '../../settings';
+
 import SearchBar from '../SearchBar/SearchBar';
 import SearchResults from '../SearchResults/SearchResults';
 import Playlist from '../Playlist/Playlist';
@@ -98,6 +100,11 @@ class App extends React.Component {
   }
 
   componentDidMount(){
+
+    if (!IS_LOCAL && window.location.protocol !== "https:") {
+      window.location.protocol = "https:";
+      return;
+    }
 
     //check if in the middle of performing a form action when callback is returned
     const callbackAction = JSON.parse(localStorage.getItem("callbackAction"));
