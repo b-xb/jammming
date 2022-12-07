@@ -1,4 +1,5 @@
 const CLIENT_ID = '35a5d79c82064198bc15e45314f78fb6';
+//const REDIRECT_URI = 'http://localhost:3000/';
 const REDIRECT_URI = 'https://b-xb-jammming.surge.sh/';
 
 let accessToken = "";
