@@ -78,8 +78,6 @@ class App extends React.Component {
         playlistTracks: [],
       });
 
-      // temporary fix for updating playlist Name value property on reset
-      document.getElementsByClassName("Playlist")[0].children[0].value = "New Playlist";
     }
 
   }
@@ -142,7 +140,7 @@ class App extends React.Component {
           <SearchBar onSearch={this.search} defaultValue={this.state.searchTerm}/>
           <div className="App-playlist">
             <SearchResults onAdd={this.addTrack} results={this.state.searchResults} />
-            <Playlist onSave={this.savePlaylist} onNameChange={this.updatePlaylistName} onRemove={this.removeTrack} tracks={this.state.playlistTracks}/>
+            <Playlist playlistName={this.state.playlistName} onSave={this.savePlaylist} onNameChange={this.updatePlaylistName} onRemove={this.removeTrack} tracks={this.state.playlistTracks}/>
           </div>
         </div>
       </div>
