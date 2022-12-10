@@ -1,2 +1,1 @@
-// replace/override this with setting in package.json that is called when running locally
-export const IS_LOCAL = false;
+export const IS_LOCAL = ( process.env.NODE_ENV === 'development');
