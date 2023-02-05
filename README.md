@@ -2,20 +2,17 @@
 
 ## bugs
 - add an alert to notify users of localStorage being used and to check for permission
-- setting the value attribute alone does not update the value property for playlist name in the input field
-  - note: added a temporary fix for now, but the solution could be improved to be more inline with best practice
-- ensure all current data (search results, playlist name, playlist tracks) remain stored between redirects
 
 ## refactoring
-- replace all instances of the string "New Playlist" with a variable that is set in App.js
+- replace all instances of the string "New Playlist" with a variable that can be set in .env
 - refactor how the localStorage interaction is handled
 
-## features
+## potential features
 - add a clear button to playlist and search results
 - automatically keep all state information stored between sessions (i.e. as soon as a piece of data is altered)
   - don't store user_token
 - Instead of redirecting users to spotify, provide a button for them to connect their accounts
-- user alterts
+- user alerts
   - provide feedback for when something goes wrong (connection issues, empty playlist, empty playlist name etc.)
   - provide users with a link to their playlist after it has been created 
 
