@@ -3,7 +3,11 @@
 
 ## Demo
 
-Try out a demo of the app at [b-xb-jammming.surge.sh](https://b-xb-jammming.surge.sh/)
+A demo of the app is running at [b-xb-jammming.surge.sh](https://b-xb-jammming.surge.sh/)
+
+In order to try out the demo app, I need to grant permission to Spotify accounts manually (at this current time).
+
+If you are interested, then send a private message to me containing the email address that is linked to your Spotify account and I can grant you permission.
 
 ## Requirements
 
