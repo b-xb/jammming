@@ -118,9 +118,10 @@ The main application is _complete_ and fully functional. I aim to add a few addi
 
 ### bugs
 - add an alert to notify users of localStorage being used and to check for permission  
-  (in order to comply with [The European Union's ePrivacy Directive](https://edps.europa.eu/data-protection/our-work/subjects/eprivacy-directive_en) )
+  - Required in order to comply with [The European Union's ePrivacy Directive](https://edps.europa.eu/data-protection/our-work/subjects/eprivacy-directive_en)
+  - Also a pre-requisite to being granted access to the Spotify API beyond _Development mode_ (see [Spotify Developer Policy](https://developer.spotify.com/policy/) )
 - 403 Status "Failed to load resource" when attempting to post a playlist
-  - For Spotify applications in "Development mode" test users need to be explicitly granted permission
+  - For Spotify applications in _Development mode_ test users need to be explicitly granted permission
   - Alter the code to handle this error more gracefully and provide the user with feedback
 
 ### refactoring
