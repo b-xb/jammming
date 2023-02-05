@@ -1,6 +1,4 @@
-import { IS_LOCAL } from '../settings'
-
-const CLIENT_ID = '35a5d79c82064198bc15e45314f78fb6';
+import { IS_LOCAL, CLIENT_ID } from '../settings'
 const REDIRECT_URI = IS_LOCAL ? 'http://localhost:3000/': 'https://b-xb-jammming.surge.sh/';
 
 let accessToken = "";
