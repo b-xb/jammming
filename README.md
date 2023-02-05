@@ -113,8 +113,11 @@ The main application is _complete_ and fully functional. I aim to add a few addi
 ## TODO
 
 ### bugs
-- add an alert to notify users of localStorage being used and to check for permission
+- add an alert to notify users of localStorage being used and to check for permission  
+  (in order to comply with [The European Union's ePrivacy Directive](https://edps.europa.eu/data-protection/our-work/subjects/eprivacy-directive_en) )
 - 403 Status "Failed to load resource" when attempting to post a playlist
+  - For Spotify applications in "Development mode" test users need to be explicitly granted permission
+  - Alter the code to handle this error more gracefully and provide the user with feedback
 
 ### refactoring
 - replace all instances of the string "New Playlist" with a variable that can be set in .env
